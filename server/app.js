@@ -3,8 +3,8 @@ import {connectDB} from "./connectDB.js";
 import {LinkController} from "./controllers/Link.controller.js";
 
 
-const hostname = process.env.APP_HOST_NAME || 'localhost';
-const port = process.env.APP_HOST_PORT || 3000;
+const hostname = process.env.APP_IP || 'localhost';
+const port = process.env.APP_PORT || 3000;
 const protocol = 'http://'
 
 const server = http.createServer(async (req, res) => {
@@ -50,7 +50,7 @@ const server = http.createServer(async (req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
         const data = await LinkController.matchLink({
-            link: 'http://localhost:3000' + req.url
+            link: protocol + hostname + ':' + port + req.url
         })
         if(data.length > 0) {
             res.writeHead(301, {
