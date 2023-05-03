@@ -36,7 +36,7 @@ btn.addEventListener('click', async () => {
     }
     else {
         alert('Ссылка отправлена! Для получения укороченного варианта перезагрузите страницу!')
-        await fetch(`${api_url}/link`, {
+        await fetch(`${api_url}link`, {
             method: 'POST',
             body: JSON.stringify({
                 link

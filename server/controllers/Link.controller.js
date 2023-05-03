@@ -11,7 +11,7 @@ class Link {
 
     addLink = async ({link}) => {
        const {rows: return_data} = await connectDB.query(`INSERT INTO ${this.nameTable} 
-                        (url, short_url) values ($1, $2) RETURNING *`, [link, 'http://localhost:3000/' + UniqueCharOTP(4)]);
+                        (url, short_url) values ($1, $2) RETURNING *`, [link, 'http://fast-link.na4u.ru/' + UniqueCharOTP(4)]);
        return return_data
     }
 
