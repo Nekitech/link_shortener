@@ -1,6 +1,6 @@
 import http from 'http'
-import {connectDB} from "./connectDB.js";
 import {LinkController} from "./controllers/Link.controller.js";
+import {RouterController} from "./router.js";
 
 
 const hostname = process.env.APP_IP || 'localhost';
@@ -15,30 +15,10 @@ const server = http.createServer(async (req, res) => {
     };
     console.log(req.method, req.url)
     if(req.url === '/links' && req.method === 'GET') {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        res.writeHead(200, headers);
-
-        const data = await LinkController.getAllLinks();
-        res.end(JSON.stringify(data, null, 2));
+        await RouterController.get(res, headers)
     }
     else if(req.url === '/link' && req.method === 'POST') {
-        let body = '';
-        req.on('data', (chunk) => {
-            body += chunk.toString();
-        });
-        req.on('end', async () => {
-            try {
-                const postData = JSON.parse(body);
-                console.log(postData);
-                const return_data = await LinkController.addLink(postData)
-                res.writeHead(200, {'Content-Type': 'text/plain'}, headers);
-                res.end('Post received: ' + JSON.stringify(return_data, null, 2));
-
-            } catch (err) {
-                res.end(JSON.stringify(err))
-            }
-        });
+        await RouterController.post(req, res, headers)
     }
     else if(req.url === '/') {
         res.statusCode = 200;
