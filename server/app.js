@@ -5,7 +5,7 @@ import {LinkController} from "./controllers/Link.controller.js";
 
 const hostname = process.env.APP_IP || 'localhost';
 const port = process.env.APP_PORT || 3000;
-const protocol = 'http://'
+const protocol = 'https://'
 
 const server = http.createServer(async (req, res) => {
     const headers = {
@@ -50,12 +50,12 @@ const server = http.createServer(async (req, res) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
         const data = await LinkController.matchLink({
-            link: protocol + hostname + ':' + port + req.url
+            link:  'https://fast-link.na4u.ru' + req.url
         })
         if(data.length > 0) {
             res.writeHead(301, {
                 Location: `${data[0].url}`,
-            }, headers).end();
+            }).end(JSON.stringify(data[0]) + ' success redirect');
         }
         else {
             res.writeHead(200, headers);

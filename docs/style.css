@@ -10,21 +10,38 @@ input {
     border: none;
     outline: none;
 }
-.app {
+body {
     width: 100%;
     height: 100vh;
+    background-image: linear-gradient(180deg, #417de5, #0932b9);
     display: flex;
     align-items: center;
     justify-content: center;
+
+}
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 700px;
+    height: fit-content;
+    padding: 30px 10px;
+
     flex-direction: column;
     gap: 20px 0;
-    background-image: linear-gradient(180deg, #417de5, #0932b9);
+    /*background-image: linear-gradient(180deg, #dbe3b6, #ce115c);*/
+    background: rgba(103, 32, 143, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
 }
 .links {
-    border: 1px solid #000;
+    border: 1px solid #b8e5e5;
 }
 .link {
-    border-bottom: 1px solid #000 ;
+    border-bottom: 1px solid #ffffff;
     padding: 5px 10px;
     color: #b7b7b7;
 }
